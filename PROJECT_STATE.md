@@ -15,9 +15,9 @@ When you are invoked to work on this project, follow these exact steps:
 
 ## 🏃 How to Run the Project
 - **Frontend (Flutter):** 
-  - Ensure an emulator or physical device is running.
   - Run `flutter pub get` inside the `kaamyaar` directory to install dependencies.
-  - Run `flutter run` in the `kaamyaar` directory to start the app.
+  - **For Web (Chrome):** Run `flutter run -d chrome` in the `kaamyaar` directory to preview on the web.
+  - **For Mobile:** Ensure an emulator or physical device is running and run `flutter run` in the `kaamyaar` directory.
 - **Backend (Supabase):** 
   - We are using Supabase. Most backend changes will be SQL scripts executed in the Supabase Dashboard, unless configured via the Supabase CLI locally.
 
