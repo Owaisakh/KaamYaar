@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "412044120587",
+    "project_id": "kaamyaar-744f7",
+    "storage_bucket": "kaamyaar-744f7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412044120587:android:8eb4737ba2c13a23af2d0e",
+        "android_client_info": {
+          "package_name": "com.example.kaamyaar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvk7ZsI7eo__olUWyjap03z22TRfaRjG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

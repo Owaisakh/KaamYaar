@@ -5,6 +5,10 @@ import 'core/theme/app_theme.dart';
 import 'core/routing/app_router.dart';
 import 'core/supabase/supabase_config.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'core/notifications/firebase_messaging_service.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
@@ -14,6 +18,12 @@ void main() async {
   });
   
   await SupabaseConfig.initialize();
+
+  // Initialize Firebase and Notifications
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseMessagingService().init();
 
   runApp(
     const ProviderScope(
