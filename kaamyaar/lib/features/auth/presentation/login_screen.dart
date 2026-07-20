@@ -21,7 +21,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     setState(() => _isLoading = true);
 
     try {
-      await ref.read(authNotifierProvider.notifier).sendOTP(phone);
+      await ref.read(authProvider.notifier).sendOTP(phone);
       if (mounted) {
         context.go('/otp', extra: phone);
       }

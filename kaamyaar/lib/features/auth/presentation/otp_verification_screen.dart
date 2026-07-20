@@ -21,7 +21,7 @@ class _OtpVerificationScreenState extends ConsumerState<OtpVerificationScreen> {
     setState(() => _isLoading = true);
 
     try {
-      await ref.read(authNotifierProvider.notifier).verifyOTP(widget.phone, otp);
+      await ref.read(authProvider.notifier).verifyOTP(widget.phone, otp);
       // App router will redirect based on auth state changes
     } catch (e) {
       if (mounted) {

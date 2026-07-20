@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/user_model.dart';
+import '../domain/user_model.dart';
 import '../../../../core/supabase/auth_provider.dart';
 
 class RoleSelectionScreen extends ConsumerWidget {
   const RoleSelectionScreen({super.key});
 
   void _selectRole(BuildContext context, WidgetRef ref, UserRole role) async {
-    final authState = ref.read(authNotifierProvider);
+    final authState = ref.read(authProvider);
     final user = authState.value;
     if (user != null) {
       final updatedUser = user.copyWith(role: role);
-      await ref.read(authNotifierProvider.notifier).updateUserProfile(updatedUser);
+      await ref.read(authProvider.notifier).updateUserProfile(updatedUser);
       // After updating, app router will redirect based on the new state
     }
   }

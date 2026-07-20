@@ -79,6 +79,6 @@ class SupabaseAuthRepository implements AuthRepository {
 }
 
 @riverpod
-AuthRepository authRepository(AuthRepositoryRef ref) {
+AuthRepository authRepository(Ref ref) {
   return SupabaseAuthRepository(Supabase.instance.client);
 }

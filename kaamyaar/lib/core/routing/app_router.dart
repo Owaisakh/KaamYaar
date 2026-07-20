@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../supabase/auth_provider.dart';
+import '../../features/auth/domain/user_model.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/auth/presentation/otp_verification_screen.dart';
 import '../../features/auth/presentation/role_selection_screen.dart';
+import '../../features/customer/presentation/customer_main_screen.dart';
+import '../../features/customer/presentation/home/service_search_screen.dart';
+import '../../features/bookings/presentation/booking_flow_screen.dart';
+import '../../features/bookings/domain/service_model.dart';
 
 part 'app_router.g.dart';
 
@@ -64,11 +69,28 @@ GoRouter appRouter(AppRouterRef ref) {
       ),
       GoRoute(
         path: '/',
-        builder: (context, state) => const Scaffold(
-          body: Center(
-            child: Text('KaamYaar Home'),
-          ),
-        ),
+        builder: (context, state) {
+          final user = ref.read(authNotifierProvider).value;
+          if (user?.role == UserRole.worker) {
+            return const Scaffold(
+              body: Center(
+                child: Text('Worker Dashboard Coming Soon'),
+              ),
+            );
+          }
+          return const CustomerMainScreen();
+        },
+      ),
+      GoRoute(
+        path: '/service-search',
+        builder: (context, state) => const ServiceSearchScreen(),
+      ),
+      GoRoute(
+        path: '/book-service',
+        builder: (context, state) {
+          final service = state.extra as ServiceModel;
+          return BookingFlowScreen(service: service);
+        },
       ),
     ],
   );
