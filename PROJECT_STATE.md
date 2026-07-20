@@ -51,11 +51,11 @@ When you are invoked to work on this project, follow these exact steps:
 - [✅] Implement Design System (Colors, Typography, Spacing, Theme).
 - [✅] Setup core routing (GoRouter) and state management (Riverpod).
 
-### Phase 2: Database Schema & Backend Setup `[PENDING]`
-- [❌] Create core tables: `users`, `services`, `workers`, `addresses`, `bookings`, `booking_photos`, `worker_location`, `payments`, `reviews`, `notifications`.
-- [❌] Setup Row Level Security (RLS) policies.
-- [❌] Setup Supabase Storage buckets (`profile-images`, `worker-documents`, `booking-photos`).
-- [❌] Implement database triggers for realtime events.
+### Phase 2: Database Schema & Backend Setup `[COMPLETED]`
+- [✅] Create core tables: `users`, `services`, `workers`, `addresses`, `bookings`, `booking_photos`, `worker_location`, `payments`, `reviews`, `notifications`.
+- [✅] Setup Row Level Security (RLS) policies.
+- [✅] Setup Supabase Storage buckets (`profile-images`, `worker-documents`, `booking-photos`).
+- [✅] Implement database triggers for realtime events.
 
 ### Phase 3: Authentication & User Profiles `[PENDING]`
 - [❌] Implement Phone OTP authentication via Supabase.
