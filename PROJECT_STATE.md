@@ -57,11 +57,11 @@ When you are invoked to work on this project, follow these exact steps:
 - [✅] Setup Supabase Storage buckets (`profile-images`, `worker-documents`, `booking-photos`).
 - [✅] Implement database triggers for realtime events.
 
-### Phase 3: Authentication & User Profiles `[PENDING]`
-- [❌] Implement Phone OTP authentication via Supabase.
-- [❌] Build Splash and Role Selection screens (Customer vs Worker).
-- [❌] Customer Profile creation & Address management.
-- [❌] Worker Profile creation & Verification document upload.
+### Phase 3: Authentication & User Profiles `[IN PROGRESS]`
+- [✅] Implement Phone OTP authentication via Supabase.
+- [✅] Build Splash and Role Selection screens (Customer vs Worker).
+- [✅] Customer Profile creation & Address management.
+- [✅] Worker Profile creation & Verification document upload.
 
 ### Phase 4: Customer App - Home & Booking Flow `[PENDING]`
 - [❌] Build Home Screen (Hero, Service Grid, Emergency Card).
