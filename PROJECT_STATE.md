@@ -69,10 +69,10 @@ When you are invoked to work on this project, follow these exact steps:
 - [✅] Build Booking Flow: Step 1 (Issue description & photo), Step 2 (Location), Step 3 (Schedule), Step 4 (Confirm).
 - [✅] Save booking to backend (Status: `pending`).
 
-### Phase 5: Worker Assignment Engine (Backend & Realtime) `[PENDING]`
-- [❌] Implement assignment logic (filter by approved, online, category, distance).
-- [❌] Dispatch notifications to eligible workers (FCM).
-- [❌] Setup realtime listeners on the app side to update UI on assignment.
+### Phase 5: Worker Assignment Engine (Backend & Realtime) `[COMPLETED]`
+- [✅] Implement assignment logic (filter by approved, online, category, distance).
+- [✅] Dispatch notifications to eligible workers (FCM).
+- [✅] Setup realtime listeners on the app side to update UI on assignment.
 
 ### Phase 6: Worker App - Dashboard & Job Acceptance `[PENDING]`
 - [❌] Build Worker Dashboard (Earnings, Active/Pending Jobs).
@@ -102,4 +102,4 @@ When you are invoked to work on this project, follow these exact steps:
 
 ---
 
-**Last Updated:** Phase 4 Ready.
+**Last Updated:** Phase 5 Completed.

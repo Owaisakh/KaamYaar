@@ -75,6 +75,19 @@ class BookingRepository {
         .map((e) => AddressModel.fromJson(e as Map<String, dynamic>))
         .toList();
   }
+
+  Stream<BookingModel> watchBooking(String bookingId) {
+    return _client
+        .from('bookings')
+        .stream(primaryKey: ['id'])
+        .eq('id', bookingId)
+        .map((events) {
+      if (events.isEmpty) {
+        throw Exception('Booking not found');
+      }
+      return BookingModel.fromJson(events.first);
+    });
+  }
 }
 
 @riverpod
