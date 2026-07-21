@@ -88,9 +88,33 @@ class BookingRepository {
       return BookingModel.fromJson(events.first);
     });
   }
+
+  Stream<Map<String, dynamic>> watchWorkerLocation(String bookingId) {
+    return _client
+        .from('worker_location')
+        .stream(primaryKey: ['id'])
+        .eq('booking_id', bookingId)
+        .map((events) {
+      if (events.isEmpty) return {};
+      // Get the latest one if multiple
+      events.sort((a, b) {
+        final dateA = DateTime.parse(a['recorded_at']);
+        final dateB = DateTime.parse(b['recorded_at']);
+        return dateB.compareTo(dateA); // descending
+      });
+      return events.first;
+    });
+  }
+
+  Future<void> updateBookingStatus(String bookingId, String status) async {
+    await _client
+        .from('bookings')
+        .update({'status': status})
+        .eq('id', bookingId);
+  }
 }
 
 @riverpod
-BookingRepository bookingRepository(BookingRepositoryRef ref) {
+BookingRepository bookingRepository(Ref ref) {
   return BookingRepository(Supabase.instance.client);
 }

@@ -20,11 +20,14 @@ void main() async {
   await SupabaseConfig.initialize();
 
   // Initialize Firebase and Notifications
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  await FirebaseMessagingService().init();
-
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    await FirebaseMessagingService().init();
+  } catch (e) {
+    debugPrint('Firebase initialization failed: $e');
+  }
   runApp(
     const ProviderScope(
       child: KaamYaarApp(),

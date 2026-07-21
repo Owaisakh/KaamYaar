@@ -54,4 +54,4 @@ final class BookingRepositoryProvider
   }
 }
 
-String _$bookingRepositoryHash() => r'8d452e158c7bde93d48dbd221375320c7bd8a44f';
+String _$bookingRepositoryHash() => r'9e3a5872b0a8698fd62303a219b94a09c288ec69';

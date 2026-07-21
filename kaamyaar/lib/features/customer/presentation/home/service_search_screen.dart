@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import '../../../bookings/data/service_repository.dart';
 import '../../../bookings/domain/service_model.dart';
 
@@ -69,7 +68,7 @@ class _ServiceSearchScreenState extends ConsumerState<ServiceSearchScreen> {
             hintText: 'What do you need help with?',
             border: InputBorder.none,
             suffixIcon: IconButton(
-              icon: const Icon(LucideIcons.x),
+              icon: const Icon(Icons.close),
               onPressed: () {
                 _searchController.clear();
                 _performSearch('');
@@ -89,7 +88,7 @@ class _ServiceSearchScreenState extends ConsumerState<ServiceSearchScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(LucideIcons.searchX, size: 64, color: theme.colorScheme.onSurfaceVariant.withOpacity(0.5)),
+                      Icon(Icons.search_off, size: 64, color: theme.colorScheme.onSurfaceVariant.withOpacity(0.5)),
                       const SizedBox(height: 16),
                       Text(
                         'No services found',
@@ -132,7 +131,7 @@ class _ServiceSearchScreenState extends ConsumerState<ServiceSearchScreen> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        trailing: const Icon(LucideIcons.chevronRight),
+                        trailing: const Icon(Icons.chevron_right),
                         onTap: () {
                           context.push('/book-service', extra: service);
                         },
@@ -145,13 +144,13 @@ class _ServiceSearchScreenState extends ConsumerState<ServiceSearchScreen> {
 
   IconData _getIconForSlug(String slug) {
     switch (slug) {
-      case 'plumber': return LucideIcons.wrench;
-      case 'electrician': return LucideIcons.zap;
-      case 'ac_repair': return LucideIcons.snowflake;
-      case 'cleaner': return LucideIcons.sparkles;
-      case 'carpenter': return LucideIcons.hammer;
-      case 'painter': return LucideIcons.paintbrush;
-      default: return LucideIcons.tool;
+      case 'plumber': return Icons.build;
+      case 'electrician': return Icons.bolt;
+      case 'ac_repair': return Icons.ac_unit;
+      case 'cleaner': return Icons.auto_awesome;
+      case 'carpenter': return Icons.hardware;
+      case 'painter': return Icons.format_paint;
+      default: return Icons.handyman;
     }
   }
 }

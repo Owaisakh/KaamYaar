@@ -54,7 +54,7 @@ final class ServiceRepositoryProvider
   }
 }
 
-String _$serviceRepositoryHash() => r'1c1851b56cdd27f6c713260440bb3c3c32ec978d';
+String _$serviceRepositoryHash() => r'ee6df718ea234ae639ff40e04fc05c2392f20660';
 
 @ProviderFor(activeServices)
 final activeServicesProvider = ActiveServicesProvider._();
@@ -95,4 +95,4 @@ final class ActiveServicesProvider
   }
 }
 
-String _$activeServicesHash() => r'6cfdb3f1b78016c9fc92db12a149d249787c379e';
+String _$activeServicesHash() => r'56ce20604a24fe9ce142a1cd526c0893e6815287';

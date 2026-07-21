@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'home/home_screen.dart';
 import '../../../core/theme/app_theme.dart';
 
@@ -33,15 +32,15 @@ class _CustomerMainScreenState extends ConsumerState<CustomerMainScreen> {
         },
         destinations: const [
           NavigationDestination(
-            icon: Icon(LucideIcons.home),
+            icon: Icon(Icons.home),
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(LucideIcons.calendar),
+            icon: Icon(Icons.calendar_today),
             label: 'Bookings',
           ),
           NavigationDestination(
-            icon: Icon(LucideIcons.user),
+            icon: Icon(Icons.person),
             label: 'Profile',
           ),
         ],

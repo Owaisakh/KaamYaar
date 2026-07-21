@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:intl/intl.dart';
 import '../domain/service_model.dart';
 import '../data/booking_repository.dart';
@@ -56,7 +55,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
     setState(() => _isLoading = true);
 
     try {
-      final user = ref.read(authNotifierProvider).value;
+      final user = ref.read(authProvider).value;
       if (user == null) throw Exception('User not authenticated');
 
       final repo = ref.read(bookingRepositoryProvider);
@@ -241,7 +240,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
                         : Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(LucideIcons.camera, color: theme.colorScheme.primary),
+                              Icon(Icons.camera_alt, color: theme.colorScheme.primary),
                               const SizedBox(height: 8),
                               Text('Tap to add photo', style: TextStyle(color: theme.colorScheme.primary)),
                             ],
@@ -278,15 +277,39 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
             ),
           ),
           Step(
-            title: const Text('Schedule'),
+            title: const Text('Schedule & Price'),
             isActive: _currentStep >= 2,
             state: _currentStep > 2 ? StepState.complete : StepState.indexed,
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.primaryContainer.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.local_offer, color: theme.colorScheme.primary),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Suggested Price Range', style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text('Rs. ${widget.service.basePrice.toStringAsFixed(0)} - Rs. ${(widget.service.basePrice * 1.5).toStringAsFixed(0)}'),
+                            const Text('Final price will be quoted after worker inspection.', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  leading: Icon(LucideIcons.calendar, color: theme.colorScheme.primary),
+                  leading: Icon(Icons.calendar_today, color: theme.colorScheme.primary),
                   title: Text(_selectedDate == null ? 'Select Date' : DateFormat('EEE, MMM d, yyyy').format(_selectedDate!)),
                   onTap: () async {
                     final date = await showDatePicker(
@@ -300,7 +323,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
                 ),
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  leading: Icon(LucideIcons.clock, color: theme.colorScheme.primary),
+                  leading: Icon(Icons.access_time, color: theme.colorScheme.primary),
                   title: Text(_selectedTime == null ? 'Select Time' : _selectedTime!.format(context)),
                   onTap: () async {
                     final time = await showTimePicker(
@@ -320,7 +343,12 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildSummaryRow('Service', widget.service.name),
-                _buildSummaryRow('Base Price', 'Rs. ${widget.service.basePrice.toStringAsFixed(0)}'),
+                _buildSummaryRow('Suggested Price', 'Rs. ${widget.service.basePrice.toStringAsFixed(0)} - Rs. ${(widget.service.basePrice * 1.5).toStringAsFixed(0)}'),
+                const SizedBox(height: 8),
+                const Text(
+                  '* The worker will inspect the issue and quote a final price for your approval before starting work.',
+                  style: TextStyle(fontSize: 12, color: Colors.grey, fontStyle: FontStyle.italic),
+                ),
                 const Divider(height: 32),
                 _buildSummaryRow('Issue', _issueController.text),
                 const SizedBox(height: 8),

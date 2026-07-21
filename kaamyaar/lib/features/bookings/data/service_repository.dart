@@ -36,11 +36,11 @@ class ServiceRepository {
 }
 
 @riverpod
-ServiceRepository serviceRepository(ServiceRepositoryRef ref) {
+ServiceRepository serviceRepository(Ref ref) {
   return ServiceRepository(Supabase.instance.client);
 }
 
 @riverpod
-Future<List<ServiceModel>> activeServices(ActiveServicesRef ref) {
+Future<List<ServiceModel>> activeServices(Ref ref) {
   return ref.watch(serviceRepositoryProvider).getActiveServices();
 }

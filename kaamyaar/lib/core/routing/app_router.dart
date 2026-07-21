@@ -11,12 +11,15 @@ import '../../features/customer/presentation/customer_main_screen.dart';
 import '../../features/customer/presentation/home/service_search_screen.dart';
 import '../../features/bookings/presentation/booking_flow_screen.dart';
 import '../../features/bookings/domain/service_model.dart';
+import '../../features/worker/presentation/dashboard/worker_dashboard_screen.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'app_router.g.dart';
 
 @riverpod
-GoRouter appRouter(AppRouterRef ref) {
-  final authState = ref.watch(authNotifierProvider);
+GoRouter appRouter(Ref ref) {
+  final authState = ref.watch(authProvider);
 
   return GoRouter(
     initialLocation: '/splash',
@@ -28,7 +31,7 @@ GoRouter appRouter(AppRouterRef ref) {
       return authState.when(
         data: (user) {
           if (user == null) {
-            if (isLogin || isOtp || isSplash) return null;
+            if (isLogin || isOtp) return null;
             return '/login';
           }
           
@@ -70,13 +73,9 @@ GoRouter appRouter(AppRouterRef ref) {
       GoRoute(
         path: '/',
         builder: (context, state) {
-          final user = ref.read(authNotifierProvider).value;
+          final user = ref.read(authProvider).value;
           if (user?.role == UserRole.worker) {
-            return const Scaffold(
-              body: Center(
-                child: Text('Worker Dashboard Coming Soon'),
-              ),
-            );
+            return const WorkerDashboardScreen();
           }
           return const CustomerMainScreen();
         },

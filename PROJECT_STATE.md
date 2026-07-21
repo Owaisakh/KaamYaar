@@ -52,7 +52,7 @@ When you are invoked to work on this project, follow these exact steps:
 - [✅] Setup core routing (GoRouter) and state management (Riverpod).
 
 ### Phase 2: Database Schema & Backend Setup `[COMPLETED]`
-- [✅] Create core tables: `users`, `services`, `workers`, `addresses`, `bookings`, `booking_photos`, `worker_location`, `payments`, `reviews`, `notifications`.
+- [✅] Create core tables: `users`, `services`, `workers`, `addresses`, `bookings`, `booking_photos`, `worker_location`, `payments`, `reviews`, `notifications`, `booking_status_history`, `worker_documents`.
 - [✅] Setup Row Level Security (RLS) policies.
 - [✅] Setup Supabase Storage buckets (`profile-images`, `worker-documents`, `booking-photos`).
 - [✅] Implement database triggers for realtime events.
@@ -66,7 +66,7 @@ When you are invoked to work on this project, follow these exact steps:
 ### Phase 4: Customer App - Home & Booking Flow `[COMPLETED]`
 - [✅] Build Home Screen (Hero, Service Grid, Emergency Card).
 - [✅] Implement Service Search.
-- [✅] Build Booking Flow: Step 1 (Issue description & photo), Step 2 (Location), Step 3 (Schedule), Step 4 (Confirm).
+- [✅] Build Booking Flow: Step 1 (Issue description & photo), Step 2 (Location), Step 3 (Schedule & Suggested Price Range), Step 4 (Confirm).
 - [✅] Save booking to backend (Status: `pending`).
 
 ### Phase 5: Worker Assignment Engine (Backend & Realtime) `[COMPLETED]`
@@ -74,20 +74,20 @@ When you are invoked to work on this project, follow these exact steps:
 - [✅] Dispatch notifications to eligible workers (FCM).
 - [✅] Setup realtime listeners on the app side to update UI on assignment.
 
-### Phase 6: Worker App - Dashboard & Job Acceptance `[PENDING]`
-- [❌] Build Worker Dashboard (Earnings, Active/Pending Jobs).
-- [❌] Implement Online/Offline toggle.
-- [❌] Job Request UI (Accept/Reject).
-- [❌] Update booking status to `accepted` upon worker acceptance.
+### Phase 6: Worker App - Dashboard & Job Acceptance `[COMPLETED]`
+- [✅] Build Worker Dashboard (Earnings, Active/Pending Jobs).
+- [✅] Implement Online/Offline toggle.
+- [✅] Job Request UI (Accept/Reject).
+- [✅] Update booking status to `accepted` upon worker acceptance.
 
-### Phase 7: Realtime Tracking & Job Execution `[PENDING]`
-- [❌] Implement Worker location broadcasting (GPS tracking).
-- [❌] Build Live Tracking map for Customer (showing Worker ETA).
-- [❌] Worker flow: `on_the_way` -> `arrived` -> `in_progress` -> `completed`.
+### Phase 7: Realtime Tracking & Job Execution `[COMPLETED]`
+- [✅] Implement Worker location broadcasting (GPS tracking).
+- [✅] Build Live Tracking map for Customer (showing Worker ETA).
+- [✅] Worker flow: `on_the_way` -> `arrived` -> `inspect_problem` -> `quote_final_price` -> `customer_approves` -> `in_progress` -> `completed`.
 
 ### Phase 8: Payments, Ratings, & History `[PENDING]`
-- [❌] Generate payment record on job completion.
-- [❌] Build Payment screen for Customer (Cash/Cards/EasyPaisa).
+- [❌] Generate payment record on job completion (Version 1: Cash only, Version 2: EasyPaisa/Cards).
+- [❌] Build Payment screen for Customer.
 - [❌] Build Rating & Review screen.
 - [❌] Build Booking History tabs (Active, Completed, Cancelled).
 
@@ -102,4 +102,4 @@ When you are invoked to work on this project, follow these exact steps:
 
 ---
 
-**Last Updated:** Phase 5 Completed.
+**Last Updated:** Phases 1-5 fully retrofitted and aligned with MASTER_DOCUMENT.md. Ready for Phase 6.

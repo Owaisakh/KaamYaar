@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/supabase/auth_provider.dart';
 import '../../../bookings/data/service_repository.dart';
@@ -11,7 +10,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userAsync = ref.watch(authNotifierProvider);
+    final userAsync = ref.watch(authProvider);
     final servicesAsync = ref.watch(activeServicesProvider);
     final theme = Theme.of(context);
 
@@ -38,7 +37,7 @@ class HomeScreen extends ConsumerWidget {
             ),
             actions: [
               IconButton(
-                icon: const Icon(LucideIcons.bell),
+                icon: const Icon(Icons.notifications),
                 onPressed: () {},
               ),
               const SizedBox(width: 8),
@@ -64,7 +63,7 @@ class HomeScreen extends ConsumerWidget {
                   ),
                   child: Row(
                     children: [
-                      Icon(LucideIcons.search, color: theme.colorScheme.onSurfaceVariant),
+                      Icon(Icons.search, color: theme.colorScheme.onSurfaceVariant),
                       const SizedBox(width: 12),
                       Text(
                         'What do you need help with?',
@@ -138,7 +137,7 @@ class HomeScreen extends ConsumerWidget {
                       ),
                     ),
                     const Icon(
-                      LucideIcons.alertTriangle,
+                      Icons.warning,
                       size: 64,
                       color: Colors.white24,
                     ),
@@ -265,19 +264,19 @@ class HomeScreen extends ConsumerWidget {
   IconData _getIconForSlug(String slug) {
     switch (slug) {
       case 'plumber':
-        return LucideIcons.wrench;
+        return Icons.build;
       case 'electrician':
-        return LucideIcons.zap;
+        return Icons.bolt;
       case 'ac_repair':
-        return LucideIcons.snowflake;
+        return Icons.ac_unit;
       case 'cleaner':
-        return LucideIcons.sparkles;
+        return Icons.auto_awesome;
       case 'carpenter':
-        return LucideIcons.hammer;
+        return Icons.hardware;
       case 'painter':
-        return LucideIcons.paintbrush;
+        return Icons.format_paint;
       default:
-        return LucideIcons.tool;
+        return Icons.handyman;
     }
   }
 }
