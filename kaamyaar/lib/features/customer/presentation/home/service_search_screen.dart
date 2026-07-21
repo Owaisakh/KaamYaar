@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../bookings/data/service_repository.dart';
 import '../../../bookings/domain/service_model.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ServiceSearchScreen extends ConsumerStatefulWidget {
   const ServiceSearchScreen({super.key});
@@ -82,17 +83,69 @@ class _ServiceSearchScreenState extends ConsumerState<ServiceSearchScreen> {
         ),
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: 6,
+              itemBuilder: (context, index) {
+                return Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Card(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    child: ListTile(
+                      leading: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      title: Container(
+                        width: double.infinity,
+                        height: 16,
+                        color: Colors.white,
+                      ),
+                      subtitle: Container(
+                        width: 100,
+                        height: 12,
+                        color: Colors.white,
+                        margin: const EdgeInsets.only(top: 8),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            )
           : _searchResults.isEmpty
               ? Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.search_off, size: 64, color: theme.colorScheme.onSurfaceVariant.withOpacity(0.5)),
-                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.all(24),
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.primaryContainer.withOpacity(0.3),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          Icons.search_off_rounded,
+                          size: 72,
+                          color: theme.colorScheme.primary,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
                       Text(
                         'No services found',
-                        style: theme.textTheme.titleMedium?.copyWith(
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Try searching with a different keyword.',
+                        style: theme.textTheme.bodyLarge?.copyWith(
                           color: theme.colorScheme.onSurfaceVariant,
                         ),
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/admin_analytics_provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class AdminAnalyticsScreen extends ConsumerWidget {
   const AdminAnalyticsScreen({super.key});
@@ -35,7 +36,23 @@ class AdminAnalyticsScreen extends ConsumerWidget {
           ),
         );
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: List.generate(
+            2,
+            (index) => Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
+              child: Card(
+                margin: const EdgeInsets.only(bottom: 16),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                child: const SizedBox(height: 100, width: double.infinity),
+              ),
+            ),
+          ),
+        ),
+      ),
       error: (err, stack) => Center(child: Text('Error: $err')),
     );
   }

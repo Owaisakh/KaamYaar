@@ -4,6 +4,7 @@ import '../../data/worker_repository.dart';
 import '../../../bookings/domain/booking_model.dart';
 import '../../../../core/theme/app_colors.dart';
 import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 
 class IncomingJobsList extends ConsumerWidget {
   final String serviceId;
@@ -17,7 +18,25 @@ class IncomingJobsList extends ConsumerWidget {
       stream: stream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 2,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
+                child: Container(
+                  height: 160,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+              ),
+            ),
+          );
         }
         if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
@@ -25,10 +44,25 @@ class IncomingJobsList extends ConsumerWidget {
         
         final bookings = snapshot.data ?? [];
         if (bookings.isEmpty) {
-          return const Padding(
-            padding: EdgeInsets.all(32.0),
+          return Container(
+            padding: const EdgeInsets.all(32.0),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade50,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.grey.shade200),
+            ),
             child: Center(
-              child: Text('No new job requests at the moment.', style: TextStyle(color: Colors.grey)),
+              child: Column(
+                children: [
+                  Icon(Icons.work_off, size: 48, color: Colors.grey.shade400),
+                  const SizedBox(height: 16),
+                  const Text('No new job requests', 
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black54)),
+                  const SizedBox(height: 8),
+                  const Text('Stay online to receive requests.', 
+                    style: TextStyle(color: Colors.grey)),
+                ],
+              ),
             ),
           );
         }

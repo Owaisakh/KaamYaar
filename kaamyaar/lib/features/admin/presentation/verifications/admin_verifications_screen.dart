@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/admin_verifications_provider.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class AdminVerificationsScreen extends ConsumerWidget {
   const AdminVerificationsScreen({super.key});
@@ -12,7 +14,17 @@ class AdminVerificationsScreen extends ConsumerWidget {
     return verificationsAsync.when(
       data: (verifications) {
         if (verifications.isEmpty) {
-          return const Center(child: Text('No pending verifications.'));
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.verified_user_outlined, size: 64, color: Colors.grey[400]),
+                const SizedBox(height: 16),
+                Text('No pending verifications.',
+                    style: TextStyle(fontSize: 18, color: Colors.grey[600])),
+              ],
+            ),
+          );
         }
         return ListView.builder(
           itemCount: verifications.length,
@@ -54,11 +66,11 @@ class AdminVerificationsScreen extends ConsumerWidget {
                       child: Stack(
                         alignment: Alignment.topRight,
                         children: [
-                          Image.network(
-                            doc.fileUrl,
+                          CachedNetworkImage(
+                            imageUrl: doc.fileUrl,
                             fit: BoxFit.contain,
-                            errorBuilder: (context, error, stackTrace) =>
-                                const Padding(
+                            placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) => const Padding(
                               padding: EdgeInsets.all(32.0),
                               child: Icon(Icons.broken_image, size: 64),
                             ),
@@ -77,7 +89,17 @@ class AdminVerificationsScreen extends ConsumerWidget {
           },
         );
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => ListView.builder(
+        itemCount: 5,
+        itemBuilder: (context, index) => Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Card(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: const SizedBox(height: 72),
+          ),
+        ),
+      ),
       error: (err, stack) => Center(child: Text('Error: $err')),
     );
   }

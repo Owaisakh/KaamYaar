@@ -6,6 +6,7 @@ import '../../../bookings/data/booking_repository.dart';
 import '../../../bookings/domain/booking_model.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_theme.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CustomerBookingsScreen extends ConsumerStatefulWidget {
   const CustomerBookingsScreen({super.key});
@@ -75,7 +76,34 @@ class _CustomerBookingsScreenState extends ConsumerState<CustomerBookingsScreen>
             ],
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => ListView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: 4,
+          itemBuilder: (context, index) => Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Card(
+              margin: const EdgeInsets.only(bottom: 16),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              child: Container(
+                height: 120,
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(width: 150, height: 16, color: Colors.white),
+                    const SizedBox(height: 12),
+                    Container(
+                        width: double.infinity, height: 16, color: Colors.white),
+                    const SizedBox(height: 12),
+                    Container(width: 100, height: 16, color: Colors.white),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
         error: (error, _) => Center(child: Text('Error: $error')),
       ),
     );
@@ -87,14 +115,30 @@ class _CustomerBookingsScreenState extends ConsumerState<CustomerBookingsScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.event_busy, size: 64, color: Colors.grey[400]),
-            const SizedBox(height: 16),
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: AppTheme.primaryColor.withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.history_toggle_off,
+                  size: 72, color: AppTheme.primaryColor),
+            ),
+            const SizedBox(height: 24),
             Text(
-              'No bookings found',
+              'No bookings yet',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 22,
+                color: Colors.grey[800],
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Your booking history will appear here.',
+              style: TextStyle(
+                fontSize: 16,
                 color: Colors.grey[600],
-                fontWeight: FontWeight.w500,
               ),
             ),
           ],
