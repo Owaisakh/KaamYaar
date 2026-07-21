@@ -42,7 +42,7 @@ final class ActiveJobControllerProvider
 }
 
 String _$activeJobControllerHash() =>
-    r'04d659af9084eb6f0b9ce82dc843b3132146316d';
+    r'f9532aa417c0a9fa24ff15ba06c39daa3ba432a5';
 
 abstract class _$ActiveJobController extends $Notifier<bool> {
   bool build();

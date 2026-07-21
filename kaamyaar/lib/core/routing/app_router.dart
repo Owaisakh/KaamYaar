@@ -15,6 +15,7 @@ import '../../features/worker/presentation/dashboard/worker_dashboard_screen.dar
 import '../../features/customer/presentation/bookings/payment_screen.dart';
 import '../../features/customer/presentation/bookings/review_screen.dart';
 import '../../features/bookings/domain/booking_model.dart';
+import '../../features/admin/presentation/admin_dashboard_screen.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -77,7 +78,9 @@ GoRouter appRouter(Ref ref) {
         path: '/',
         builder: (context, state) {
           final user = ref.read(authProvider).value;
-          if (user?.role == UserRole.worker) {
+          if (user?.role == UserRole.admin) {
+            return const AdminDashboardScreen();
+          } else if (user?.role == UserRole.worker) {
             return const WorkerDashboardScreen();
           }
           return const CustomerMainScreen();

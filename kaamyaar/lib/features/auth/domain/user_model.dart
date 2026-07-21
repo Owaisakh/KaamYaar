@@ -6,6 +6,7 @@ part 'user_model.g.dart';
 enum UserRole {
   customer,
   worker,
+  admin,
 }
 
 @freezed
