@@ -85,11 +85,11 @@ When you are invoked to work on this project, follow these exact steps:
 - [✅] Build Live Tracking map for Customer (showing Worker ETA).
 - [✅] Worker flow: `on_the_way` -> `arrived` -> `inspect_problem` -> `quote_final_price` -> `customer_approves` -> `in_progress` -> `completed`.
 
-### Phase 8: Payments, Ratings, & History `[PENDING]`
-- [❌] Generate payment record on job completion (Version 1: Cash only, Version 2: EasyPaisa/Cards).
-- [❌] Build Payment screen for Customer.
-- [❌] Build Rating & Review screen.
-- [❌] Build Booking History tabs (Active, Completed, Cancelled).
+### Phase 8: Payments, Ratings, & History `[COMPLETED]`
+- [✅] Generate payment record on job completion (Version 1: Cash only, Version 2: EasyPaisa/Cards).
+- [✅] Build Payment screen for Customer.
+- [✅] Build Rating & Review screen.
+- [✅] Build Booking History tabs (Active, Completed, Cancelled).
 
 ### Phase 9: Admin Dashboard & Analytics (Optional/Later) `[PENDING]`
 - [❌] View and approve worker verification requests.
@@ -102,4 +102,4 @@ When you are invoked to work on this project, follow these exact steps:
 
 ---
 
-**Last Updated:** Phases 1-5 fully retrofitted and aligned with MASTER_DOCUMENT.md. Ready for Phase 6.
+**Last Updated:** Phase 8 is completed. Implemented payment records, ratings, and history tabs for customers and workers. Ready for Phase 9.

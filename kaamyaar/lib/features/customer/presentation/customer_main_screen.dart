@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'home/home_screen.dart';
+import 'bookings/customer_bookings_screen.dart';
 import '../../../core/theme/app_theme.dart';
 
 class CustomerMainScreen extends ConsumerStatefulWidget {
@@ -15,7 +16,7 @@ class _CustomerMainScreenState extends ConsumerState<CustomerMainScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const Center(child: Text('Bookings coming soon')), // Placeholder
+    const CustomerBookingsScreen(),
     const Center(child: Text('Profile coming soon')), // Placeholder
   ];
 

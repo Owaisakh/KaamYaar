@@ -12,6 +12,9 @@ import '../../features/customer/presentation/home/service_search_screen.dart';
 import '../../features/bookings/presentation/booking_flow_screen.dart';
 import '../../features/bookings/domain/service_model.dart';
 import '../../features/worker/presentation/dashboard/worker_dashboard_screen.dart';
+import '../../features/customer/presentation/bookings/payment_screen.dart';
+import '../../features/customer/presentation/bookings/review_screen.dart';
+import '../../features/bookings/domain/booking_model.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -89,6 +92,20 @@ GoRouter appRouter(Ref ref) {
         builder: (context, state) {
           final service = state.extra as ServiceModel;
           return BookingFlowScreen(service: service);
+        },
+      ),
+      GoRoute(
+        path: '/payment',
+        builder: (context, state) {
+          final booking = state.extra as BookingModel;
+          return PaymentScreen(booking: booking);
+        },
+      ),
+      GoRoute(
+        path: '/review',
+        builder: (context, state) {
+          final booking = state.extra as BookingModel;
+          return ReviewScreen(booking: booking);
         },
       ),
     ],

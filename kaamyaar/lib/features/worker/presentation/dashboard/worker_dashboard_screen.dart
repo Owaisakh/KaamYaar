@@ -4,6 +4,7 @@ import '../../../../core/supabase/auth_provider.dart';
 import '../../data/worker_repository.dart';
 import '../jobs/incoming_job_alert.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../bookings/worker_bookings_screen.dart';
 
 final workerProfileProvider = FutureProvider<WorkerProfile?>((ref) async {
   final user = ref.watch(authProvider).value;
@@ -84,7 +85,29 @@ class _WorkerDashboardScreenState extends ConsumerState<WorkerDashboardScreen> {
           error: (_, __) => const SizedBox(),
         ),
       ),
-      body: profileAsync.when(
+      body: [
+        _buildHomeDashboard(profileAsync, earningsAsync, isOnline),
+        const WorkerBookingsScreen(),
+        const Center(child: Text('Earnings Details coming soon')),
+        const Center(child: Text('Profile coming soon')),
+      ][_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: (i) => setState(() => _selectedIndex = i),
+        selectedItemColor: AppColors.primaryPurple,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Jobs'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet), label: 'Earnings'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHomeDashboard(AsyncValue profileAsync, AsyncValue earningsAsync, bool isOnline) {
+    return profileAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Error loading profile: $e')),
         data: (profile) {
@@ -195,19 +218,6 @@ class _WorkerDashboardScreenState extends ConsumerState<WorkerDashboardScreen> {
             ),
           );
         },
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: (i) => setState(() => _selectedIndex = i),
-        selectedItemColor: AppColors.primaryPurple,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Jobs'),
-          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet), label: 'Earnings'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-      ),
-    );
+      );
   }
 }

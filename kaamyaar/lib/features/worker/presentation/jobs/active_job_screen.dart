@@ -116,7 +116,7 @@ class _ActiveJobScreenState extends ConsumerState<ActiveJobScreen> {
         return ElevatedButton(
           style: ElevatedButton.styleFrom(backgroundColor: AppColors.success),
           onPressed: () {
-            controller.updateJobStatus(widget.job.id, 'completed');
+            controller.updateJobStatus(widget.job.id, 'completed', booking: widget.job);
           },
           child: const Text('Complete Job', style: TextStyle(color: Colors.white)),
         );

@@ -112,6 +112,30 @@ class BookingRepository {
         .update({'status': status})
         .eq('id', bookingId);
   }
+
+  Future<List<BookingModel>> getCustomerBookings(String customerId) async {
+    final response = await _client
+        .from('bookings')
+        .select()
+        .eq('customer_id', customerId)
+        .order('created_at', ascending: false);
+
+    return (response as List<dynamic>)
+        .map((e) => BookingModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  Future<List<BookingModel>> getWorkerBookings(String workerId) async {
+    final response = await _client
+        .from('bookings')
+        .select()
+        .eq('worker_id', workerId)
+        .order('created_at', ascending: false);
+
+    return (response as List<dynamic>)
+        .map((e) => BookingModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
 }
 
 @riverpod
