@@ -11,7 +11,7 @@ class CustomerMainScreen extends StatefulWidget {
   State<CustomerMainScreen> createState() => _CustomerMainScreenState();
 }
 
-class _CustomerMainScreenState extends ConsumerState<CustomerMainScreen> {
+class _CustomerMainScreenState extends State<CustomerMainScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [

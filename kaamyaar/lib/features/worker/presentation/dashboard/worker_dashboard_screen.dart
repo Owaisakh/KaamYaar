@@ -5,6 +5,8 @@ import '../../data/worker_repository.dart';
 import '../jobs/incoming_job_alert.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../bookings/worker_bookings_screen.dart';
+import '../wallet/worker_wallet_screen.dart';
+import '../profile/worker_profile_screen.dart';
 
 final workerProfileProvider = FutureProvider<WorkerProfile?>((ref) async {
   final user = ref.watch(authProvider).value;
@@ -40,6 +42,10 @@ final workerEarningsProvider = FutureProvider<double>((ref) async {
 class OnlineStatusNotifier extends Notifier<bool> {
   @override
   bool build() => true;
+
+  void setOnline(bool value) {
+    state = value;
+  }
 }
 
 final onlineStatusProvider = NotifierProvider<OnlineStatusNotifier, bool>(OnlineStatusNotifier.new);
@@ -60,13 +66,13 @@ class _WorkerDashboardScreenState extends ConsumerState<WorkerDashboardScreen> {
     Future.microtask(() async {
       final profile = await ref.read(workerProfileProvider.future);
       if (profile != null) {
-        ref.read(onlineStatusProvider.notifier).state = profile.isOnline;
+        ref.read(onlineStatusProvider.notifier).setOnline(profile.isOnline);
       }
     });
   }
 
   void _toggleOnlineStatus(bool value) async {
-    ref.read(onlineStatusProvider.notifier).state = value;
+    ref.read(onlineStatusProvider.notifier).setOnline(value);
     try {
       final profile = await ref.read(workerProfileProvider.future);
       if (profile != null) {
@@ -127,8 +133,8 @@ class _WorkerDashboardScreenState extends ConsumerState<WorkerDashboardScreen> {
       body: [
         _buildHomeDashboard(profileAsync, earningsAsync, isOnline),
         const WorkerBookingsScreen(),
-        const Center(child: Text('Earnings Details', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))),
-        const Center(child: Text('Worker Profile', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))),
+        const WorkerWalletScreen(),
+        const WorkerProfileScreen(),
       ][_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
