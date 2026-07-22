@@ -3,51 +3,77 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 class AppTheme {
-  static ThemeData get lightTheme {
+  // Customer App Theme (Dark Navy Primary, Teal Accent)
+  static ThemeData get customerTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primaryPurple,
+        seedColor: AppColors.customerPrimary,
+        primary: AppColors.customerPrimary,
+        secondary: AppColors.customerAccent,
+        surface: AppColors.customerSurface,
         brightness: Brightness.light,
-        background: AppColors.backgroundLight,
       ),
-      scaffoldBackgroundColor: AppColors.backgroundLight,
+      scaffoldBackgroundColor: AppColors.customerBgLight,
       textTheme: GoogleFonts.interTextTheme(ThemeData.light().textTheme),
       appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        backgroundColor: Colors.white,
+        elevation: 0.5,
         centerTitle: true,
-        iconTheme: IconThemeData(color: AppColors.textPrimaryLight),
+        iconTheme: IconThemeData(color: AppColors.customerPrimary),
         titleTextStyle: TextStyle(
-          color: AppColors.textPrimaryLight,
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
+          color: AppColors.customerPrimary,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      cardTheme: CardTheme(
+        color: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: const BorderSide(color: AppColors.borderLight),
         ),
       ),
     );
   }
 
-  static ThemeData get darkTheme {
+  // Worker App Theme (Teal Primary, Dark Navy Secondary)
+  static ThemeData get workerTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primaryPurple,
-        brightness: Brightness.dark,
-        background: AppColors.backgroundDark,
+        seedColor: AppColors.workerPrimary,
+        primary: AppColors.workerPrimary,
+        secondary: AppColors.workerSecondary,
+        surface: AppColors.workerSurface,
+        brightness: Brightness.light,
       ),
-      scaffoldBackgroundColor: AppColors.backgroundDark,
-      textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
+      scaffoldBackgroundColor: AppColors.workerBgLight,
+      textTheme: GoogleFonts.interTextTheme(ThemeData.light().textTheme),
       appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        backgroundColor: Colors.white,
+        elevation: 0.5,
         centerTitle: true,
-        iconTheme: IconThemeData(color: AppColors.textPrimaryDark),
+        iconTheme: IconThemeData(color: AppColors.workerSecondary),
         titleTextStyle: TextStyle(
-          color: AppColors.textPrimaryDark,
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
+          color: AppColors.workerSecondary,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      cardTheme: CardTheme(
+        color: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: const BorderSide(color: AppColors.borderLight),
         ),
       ),
     );
   }
+
+  // Legacy Theme Getters for Backward Compatibility
+  static ThemeData get lightTheme => customerTheme;
+  static ThemeData get darkTheme => workerTheme;
 }

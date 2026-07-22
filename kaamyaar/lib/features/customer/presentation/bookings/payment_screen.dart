@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../bookings/domain/booking_model.dart';
 import '../../../bookings/data/payment_repository.dart';
 
@@ -117,7 +118,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                       style: const TextStyle(
                         fontSize: 36,
                         fontWeight: FontWeight.bold,
-                        color: AppTheme.primaryColor,
+                        color: AppColors.primaryPurple,
                       ),
                     ),
                   ],

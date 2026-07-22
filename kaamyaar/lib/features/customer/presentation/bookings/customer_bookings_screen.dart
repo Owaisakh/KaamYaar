@@ -6,6 +6,7 @@ import '../../../bookings/data/booking_repository.dart';
 import '../../../bookings/domain/booking_model.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CustomerBookingsScreen extends ConsumerStatefulWidget {
@@ -47,9 +48,9 @@ class _CustomerBookingsScreenState extends ConsumerState<CustomerBookingsScreen>
         title: const Text('My Bookings', style: TextStyle(fontWeight: FontWeight.bold)),
         bottom: TabBar(
           controller: _tabController,
-          labelColor: AppTheme.primaryColor,
+          labelColor: AppColors.primaryPurple,
           unselectedLabelColor: Colors.grey,
-          indicatorColor: AppTheme.primaryColor,
+          indicatorColor: AppColors.primaryPurple,
           tabs: const [
             Tab(text: 'Active'),
             Tab(text: 'Completed'),
@@ -118,11 +119,11 @@ class _CustomerBookingsScreenState extends ConsumerState<CustomerBookingsScreen>
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: AppTheme.primaryColor.withOpacity(0.1),
+                color: AppColors.primaryPurple.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
               child: Icon(Icons.history_toggle_off,
-                  size: 72, color: AppTheme.primaryColor),
+                  size: 72, color: AppColors.primaryPurple),
             ),
             const SizedBox(height: 24),
             Text(

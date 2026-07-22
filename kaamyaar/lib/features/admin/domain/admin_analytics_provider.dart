@@ -1,23 +1,21 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../../../core/supabase/supabase_provider.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'admin_analytics_provider.freezed.dart';
+import '../../../core/supabase/supabase_config.dart';
+
 part 'admin_analytics_provider.g.dart';
 
-@freezed
-abstract class AdminAnalyticsState with _$AdminAnalyticsState {
-  const factory AdminAnalyticsState({
-    @Default(0) int activeBookings,
-    @Default(0.0) double totalRevenue,
-  }) = _AdminAnalyticsState;
+class AdminAnalyticsState {
+  final int activeBookings;
+  final double totalRevenue;
+
+  AdminAnalyticsState({required this.activeBookings, required this.totalRevenue});
 }
 
 @riverpod
 class AdminAnalytics extends _$AdminAnalytics {
   @override
   Future<AdminAnalyticsState> build() async {
-    final supabase = ref.watch(supabaseClientProvider);
+    final supabase = SupabaseConfig.client;
     
     // Fetch active bookings count
     final activeBookingsRes = await supabase

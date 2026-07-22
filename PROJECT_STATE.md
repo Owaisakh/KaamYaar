@@ -29,77 +29,52 @@ When you are invoked to work on this project, follow these exact steps:
 
 ---
 
-## 🏗 Project Architecture & Stack
-- **Frontend:** Flutter (Mobile Only - Android first)
+## 🏗 Project Architecture & Master Stack
+- **Frontend:** Flutter (Mobile Android & iOS + Web preview)
 - **Backend/Database:** Supabase (PostgreSQL, Auth, Storage, Realtime)
 - **State Management:** Riverpod
-- **Routing:** GoRouter
+- **Routing:** GoRouter (35+ defined app routes)
 - **Maps/Location:** Google Maps API
-- **Notifications:** Firebase Cloud Messaging (FCM)
-- **Design System:** Modern, premium, purple (#7C3AED) to blue (#2563EB) gradients, Inter font.
-- **Architecture Pattern:** Clean Architecture (Domain, Data, Presentation layers organized by feature).
+- **Branding:** 
+  - **Customer App:** Background White/LightNavy, Primary Dark Navy (`#0F172A`), Accent Teal (`#14B8A6`)
+  - **Worker App:** Background White, Primary Teal (`#14B8A6`), Secondary Dark Navy (`#0F172A`)
+- **Architecture Pattern:** Clean Architecture (Core, Features, Shared Widgets, Services).
 
 ---
 
-## 🚀 Project Phases & Progress Tracker
+## 🚀 Master Project Roadmap & Progress Tracker
 
-### Phase 1: Project Initialization & Infrastructure `[COMPLETED]`
-- [✅] Initialize Flutter project (`kaamyaar`).
-- [✅] Initialize Git repository.
-- [✅] Setup repository structure (`lib/core`, `lib/features`, etc.).
-- [✅] Initialize Supabase project and connect to Flutter.
-- [✅] Implement Design System (Colors, Typography, Spacing, Theme).
-- [✅] Setup core routing (GoRouter) and state management (Riverpod).
+### Phase 1: Complete Design System & Core Theme Setup `[COMPLETED]`
+- [✅] Configure dual color palette in `AppColors` (Customer Dark Navy `#0F172A` & Accent Teal `#14B8A6`, Worker Teal `#14B8A6`).
+- [✅] Create dual `AppTheme` getters (`customerTheme` and `workerTheme`).
+- [✅] Build core widget library: `KaamYaarButton`, `KaamYaarCard`, `KaamYaarBadge`, `KaamYaarAvatar`, `KaamYaarSkeleton`, `KaamYaarEmptyState`.
 
-### Phase 2: Database Schema & Backend Setup `[COMPLETED]`
-- [✅] Create core tables: `users`, `services`, `workers`, `addresses`, `bookings`, `booking_photos`, `worker_location`, `payments`, `reviews`, `notifications`, `booking_status_history`, `worker_documents`.
-- [✅] Setup Row Level Security (RLS) policies.
-- [✅] Setup Supabase Storage buckets (`profile-images`, `worker-documents`, `booking-photos`).
-- [✅] Implement database triggers for realtime events.
+### Phase 2: Navigation & Routing Architecture `[IN PROGRESS]`
+- [❌] Update `GoRouter` (`app_router.dart`) to support all 35+ routes for Customer, Worker, and Admin.
+- [❌] Update `AuthNotifier` to handle seamless role switching, demo logins, and real OTP auth.
 
-### Phase 3: Authentication & User Profiles `[COMPLETED]`
-- [✅] Implement Phone OTP authentication via Supabase.
-- [✅] Build Splash and Role Selection screens (Customer vs Worker).
-- [✅] Customer Profile creation & Address management.
-- [✅] Worker Profile creation & Verification document upload.
+### Phase 3: Customer App Complete UI & Booking Engine `[PENDING]`
+- [❌] Customer Onboarding 5-slide carousel & Location Setup screen with Map picker.
+- [❌] Customer Home screen (Header, 11 Service Categories grid, 24/7 Emergency card, Popular/Nearby workers).
+- [❌] Service Search & Filters screen with sorting (Nearest, Price, Rating).
+- [❌] Service & Worker Details page with reviews, ratings, skills, and pricing estimates.
+- [❌] 7-Step Booking Flow & Live Matching Radar screen.
+- [❌] Customer Live Worker Tracking screen with Google Maps route polyline & ETA.
+- [❌] In-App Realtime Chat, Payment screen (Cash, EasyPaisa, JazzCash, Cards), Review & Rating screen.
+- [❌] My Bookings screen (4 Tabs) & Profile / Support Center screens.
 
-### Phase 4: Customer App - Home & Booking Flow `[COMPLETED]`
-- [✅] Build Home Screen (Hero, Service Grid, Emergency Card).
-- [✅] Implement Service Search.
-- [✅] Build Booking Flow: Step 1 (Issue description & photo), Step 2 (Location), Step 3 (Schedule & Suggested Price Range), Step 4 (Confirm).
-- [✅] Save booking to backend (Status: `pending`).
+### Phase 4: Worker App Complete UI & Job Execution Engine `[PENDING]`
+- [❌] Worker Registration, Skill Selection & Document Verification upload screen.
+- [❌] Worker Dashboard with Emerald glowing Online/Offline toggle & Quick Stats.
+- [❌] 30-Second Countdown Incoming Job Request Modal.
+- [❌] Worker Active Job Screen with step progress stepper (`Accepted` -> `On The Way` -> `Arrived` -> `Inspect & Quote` -> `In Progress` -> `Completed`).
+- [❌] Worker Google Maps Turn-by-Turn Navigation screen.
+- [❌] Worker Earnings screen, Wallet & Payout Withdrawals modal, History & Reviews.
 
-### Phase 5: Worker Assignment Engine (Backend & Realtime) `[COMPLETED]`
-- [✅] Implement assignment logic (filter by approved, online, category, distance).
-- [✅] Dispatch notifications to eligible workers (FCM).
-- [✅] Setup realtime listeners on the app side to update UI on assignment.
-
-### Phase 6: Worker App - Dashboard & Job Acceptance `[COMPLETED]`
-- [✅] Build Worker Dashboard (Earnings, Active/Pending Jobs).
-- [✅] Implement Online/Offline toggle.
-- [✅] Job Request UI (Accept/Reject).
-- [✅] Update booking status to `accepted` upon worker acceptance.
-
-### Phase 7: Realtime Tracking & Job Execution `[COMPLETED]`
-- [✅] Implement Worker location broadcasting (GPS tracking).
-- [✅] Build Live Tracking map for Customer (showing Worker ETA).
-- [✅] Worker flow: `on_the_way` -> `arrived` -> `inspect_problem` -> `quote_final_price` -> `customer_approves` -> `in_progress` -> `completed`.
-
-### Phase 8: Payments, Ratings, & History `[COMPLETED]`
-- [✅] Generate payment record on job completion (Version 1: Cash only, Version 2: EasyPaisa/Cards).
-- [✅] Build Payment screen for Customer.
-- [✅] Build Rating & Review screen.
-- [✅] Build Booking History tabs (Active, Completed, Cancelled).
-
-### Phase 9: Admin Dashboard & Analytics (Optional/Later) `[COMPLETED]`
-- [✅] View and approve worker verification requests.
-- [✅] Monitor active bookings and revenue.
-
-### Phase 10: Testing, Polish & Release `[COMPLETED]`
-- [✅] Comprehensive testing (Unit, Widget, Integration).
-- [✅] Empty states, Loading skeletons, Error handling.
-- [✅] Performance audit (<3sec cold start, <300ms transitions).
+### Phase 5: Admin Panel & Complete Realtime Sync `[PENDING]`
+- [❌] Admin Analytics Dashboard, Worker Verification Queue, User Management, and Live Booking Monitor.
+- [❌] Full Supabase Realtime subscriptions (Location tracking, instant messaging, job notifications).
 
 ---
 
-**Last Updated:** Phase 10 is completed. The app has been polished with empty states, loading skeletons, and basic tests. It is now ready for release.
+**Last Updated:** 2026-07-22 - Phase 1: Complete Design System & Core Theme Setup completed! Phase 2: Navigation & Routing Architecture is now [IN PROGRESS].

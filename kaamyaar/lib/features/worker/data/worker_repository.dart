@@ -121,19 +121,22 @@ class WorkerRepository {
     return _supabase
         .from('bookings')
         .stream(primaryKey: ['id'])
-        .eq('worker_id', workerId)
         .order('created_at', ascending: false)
-        .map((data) => data.map((json) => BookingModel.fromJson(json)).toList());
+        .map((data) => data
+            .where((json) => json['worker_id'] == workerId)
+            .map((json) => BookingModel.fromJson(json))
+            .toList());
   }
   
   Stream<List<BookingModel>> watchPendingBookingsByService(String serviceId) {
     return _supabase
         .from('bookings')
         .stream(primaryKey: ['id'])
-        .eq('service_id', serviceId)
-        .eq('status', 'pending')
         .order('created_at', ascending: false)
-        .map((data) => data.map((json) => BookingModel.fromJson(json)).toList());
+        .map((data) => data
+            .where((json) => json['service_id'] == serviceId && json['status'] == 'pending')
+            .map((json) => BookingModel.fromJson(json))
+            .toList());
   }
 }
 

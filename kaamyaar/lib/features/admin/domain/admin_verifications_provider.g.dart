@@ -38,7 +38,7 @@ final class PendingVerificationsProvider
 }
 
 String _$pendingVerificationsHash() =>
-    r'9d37825cae6b14186fb11c1e3c0d2dce5cb7b838';
+    r'b214674cada6d36e966e2be85996f0957c6ff84a';
 
 abstract class _$PendingVerifications
     extends $AsyncNotifier<List<WorkerDocumentAdminModel>> {

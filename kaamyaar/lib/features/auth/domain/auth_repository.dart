@@ -5,6 +5,9 @@ abstract class AuthRepository {
   /// Send OTP to the given phone number
   Future<void> sendOTP(String phone);
 
+  /// Sign in with Google
+  Future<void> signInWithGoogle();
+
   /// Verify OTP
   Future<void> verifyOTP(String phone, String otp);
 

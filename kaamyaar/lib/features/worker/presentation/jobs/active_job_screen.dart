@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../bookings/domain/booking_model.dart';
 import '../../../../core/theme/app_colors.dart';
 import 'active_job_controller.dart';
-import '../../../auth/data/auth_repository.dart';
+import '../../../../core/supabase/auth_provider.dart';
 
 class ActiveJobScreen extends ConsumerStatefulWidget {
   final BookingModel job;
@@ -25,7 +25,7 @@ class _ActiveJobScreenState extends ConsumerState<ActiveJobScreen> {
   @override
   Widget build(BuildContext context) {
     final status = widget.job.status;
-    final workerId = ref.watch(authRepositoryProvider).currentUser?.id ?? '';
+    final workerId = ref.watch(authProvider).value?.id ?? '';
 
     return Scaffold(
       appBar: AppBar(

@@ -96,7 +96,7 @@ class LiveTrackingScreen extends ConsumerWidget {
                 // Customer approves the quote
                 ref.read(bookingRepositoryProvider).updateBookingStatus(booking.id, 'customer_approves');
               },
-              style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
+              style: ElevatedButton.styleFrom(backgroundColor: AppColors.customerPrimary),
               child: const Text('Approve Quote', style: TextStyle(color: Colors.white)),
             ),
         ],

@@ -6,6 +6,7 @@ import '../../../bookings/data/booking_repository.dart';
 import '../../../bookings/domain/booking_model.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/app_colors.dart';
 
 class WorkerBookingsScreen extends ConsumerStatefulWidget {
   const WorkerBookingsScreen({super.key});
@@ -46,9 +47,9 @@ class _WorkerBookingsScreenState extends ConsumerState<WorkerBookingsScreen>
         title: const Text('My Jobs', style: TextStyle(fontWeight: FontWeight.bold)),
         bottom: TabBar(
           controller: _tabController,
-          labelColor: AppTheme.primaryColor,
+          labelColor: AppColors.primaryPurple,
           unselectedLabelColor: Colors.grey,
-          indicatorColor: AppTheme.primaryColor,
+          indicatorColor: AppColors.primaryPurple,
           tabs: const [
             Tab(text: 'Active'),
             Tab(text: 'Completed'),

@@ -14,15 +14,5 @@ abstract class WorkerDocumentAdminModel with _$WorkerDocumentAdminModel {
     String? workerName,
   }) = _WorkerDocumentAdminModel;
 
-  factory WorkerDocumentAdminModel.fromJson(Map<String, dynamic> json) {
-    // Extract nested full_name from Supabase query if available
-    String? name;
-    if (json['workers'] != null && json['workers']['users'] != null) {
-      name = json['workers']['users']['full_name'];
-    }
-    return _$WorkerDocumentAdminModelFromJson({
-      ...json,
-      'workerName': name,
-    });
-  }
+  factory WorkerDocumentAdminModel.fromJson(Map<String, dynamic> json) => _$WorkerDocumentAdminModelFromJson(json);
 }

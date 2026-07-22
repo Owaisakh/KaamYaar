@@ -50,8 +50,8 @@ GoRouter appRouter(Ref ref) {
 
           return null;
         },
-        loading: () => isSplash ? null : '/splash',
-        error: (_, __) => '/login',
+        loading: () => (isSplash || isLogin || isOtp) ? null : '/splash',
+        error: (_, __) => (isLogin || isOtp) ? null : '/login',
       );
     },
     routes: [

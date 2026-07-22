@@ -11,6 +11,7 @@ part of 'worker_document_admin_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$WorkerDocumentAdminModel {
 
@@ -21,6 +22,8 @@ mixin _$WorkerDocumentAdminModel {
 @pragma('vm:prefer-inline')
 $WorkerDocumentAdminModelCopyWith<WorkerDocumentAdminModel> get copyWith => _$WorkerDocumentAdminModelCopyWithImpl<WorkerDocumentAdminModel>(this as WorkerDocumentAdminModel, _$identity);
 
+  /// Serializes this WorkerDocumentAdminModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkerDocumentAdminModel&&(identical(other.id, id) || other.id == id)&&(identical(other.workerId, workerId) || other.workerId == workerId)&&(identical(other.documentType, documentType) || other.documentType == documentType)&&(identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl)&&(identical(other.status, status) || other.status == status)&&(identical(other.workerName, workerName) || other.workerName == workerName));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,id,workerId,documentType,fileUrl,status,workerName);
 
@@ -208,11 +211,11 @@ return $default(_that.id,_that.workerId,_that.documentType,_that.fileUrl,_that.s
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _WorkerDocumentAdminModel implements WorkerDocumentAdminModel {
   const _WorkerDocumentAdminModel({required this.id, @JsonKey(name: 'worker_id') required this.workerId, @JsonKey(name: 'document_type') required this.documentType, @JsonKey(name: 'file_url') required this.fileUrl, required this.status, this.workerName});
-  
+  factory _WorkerDocumentAdminModel.fromJson(Map<String, dynamic> json) => _$WorkerDocumentAdminModelFromJson(json);
 
 @override final  String id;
 @override@JsonKey(name: 'worker_id') final  String workerId;
@@ -227,14 +230,17 @@ class _WorkerDocumentAdminModel implements WorkerDocumentAdminModel {
 @pragma('vm:prefer-inline')
 _$WorkerDocumentAdminModelCopyWith<_WorkerDocumentAdminModel> get copyWith => __$WorkerDocumentAdminModelCopyWithImpl<_WorkerDocumentAdminModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$WorkerDocumentAdminModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkerDocumentAdminModel&&(identical(other.id, id) || other.id == id)&&(identical(other.workerId, workerId) || other.workerId == workerId)&&(identical(other.documentType, documentType) || other.documentType == documentType)&&(identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl)&&(identical(other.status, status) || other.status == status)&&(identical(other.workerName, workerName) || other.workerName == workerName));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,id,workerId,documentType,fileUrl,status,workerName);
 
