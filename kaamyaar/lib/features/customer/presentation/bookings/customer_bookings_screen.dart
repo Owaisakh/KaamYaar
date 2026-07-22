@@ -46,11 +46,12 @@ class _CustomerBookingsScreenState extends ConsumerState<CustomerBookingsScreen>
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Bookings', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.white,
         bottom: TabBar(
           controller: _tabController,
-          labelColor: AppColors.primaryPurple,
+          labelColor: AppColors.customerPrimary,
           unselectedLabelColor: Colors.grey,
-          indicatorColor: AppColors.primaryPurple,
+          indicatorColor: AppColors.customerAccent,
           tabs: const [
             Tab(text: 'Active'),
             Tab(text: 'Completed'),
@@ -119,11 +120,11 @@ class _CustomerBookingsScreenState extends ConsumerState<CustomerBookingsScreen>
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: AppColors.primaryPurple.withOpacity(0.1),
+                color: AppColors.customerAccent.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
-              child: Icon(Icons.history_toggle_off,
-                  size: 72, color: AppColors.primaryPurple),
+              child: const Icon(Icons.history_toggle_off,
+                  size: 72, color: AppColors.customerAccent),
             ),
             const SizedBox(height: 24),
             Text(
